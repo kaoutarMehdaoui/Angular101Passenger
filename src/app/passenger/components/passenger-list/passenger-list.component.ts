@@ -10,26 +10,23 @@ import { PassengerService } from "../../containers/passenger.service";
   styleUrls: ["./passenger-list.component.css"],
 })
 export class PassengerListComponent {
-  name = "toto";
-  @Input() passengers;
-  _list = [];
+  @Input() passenger: Passenger;
   @Output() edit: EventEmitter<Passenger> = new EventEmitter();
   @Output() remove: EventEmitter<number> = new EventEmitter();
   editing: boolean = false;
-  passengerEmit: Passenger;
-
-  constructor(private passengerService: PassengerService) {}
-  ngOnInit() {}
+  passengerToEmit: Passenger;
 
   toggleEdit() {
     if (this.editing) {
-      this.edit.emit(this.passengerEmit);
+      this.edit.emit(this.passengerToEmit);
     }
     this.editing = !this.editing;
   }
+
   handleFullNameEdit(event: any) {
-    this.passengerEmit = { ...this.passengers, fullName: event.target.value };
+    this.passengerToEmit = { ...this.passenger, fullName: event.target.value };
   }
+
   handleRemove(id: number) {
     this.remove.emit(id);
   }

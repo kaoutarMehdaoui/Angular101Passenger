@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from "@angular/common/http";
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { from, Subscription } from "rxjs";
 import { Passenger } from "src/assets/passengers";
@@ -16,24 +17,34 @@ export class PassengerDashbordComponent implements OnInit, OnDestroy {
     this.passengerObservable.unsubscribe();
   }
   ngOnInit() {
-    this.passengerObservable = this.passengerService
-      .getPassengers()
-      .subscribe((passengers) => {
-        this.passengers = passengers;
-      });
+    this.passengerService
+    .getPassengers()
+    .then((passengers) => {
+      this.passengers = passengers;
+    })
+    .catch(this.logError);
   }
   editPassenger(passenger: Passenger) {
-    this.passengers = this.passengers.map((p) => {
-      if (p.id === passenger.id) {
-        return Object.assign({}, p, passenger);
-      }
-      return p;
-    });
+    this.passengerService
+      .editPassenger(passenger.id, passenger)
+      .subscribe((passenger) => {
+        this.passengers = this.passengers.map((p) => {
+          if (p.id === passenger.id) {
+            return Object.assign({}, p, passenger);
+          }
+          return p;
+        });
+      }, this.logError);
   }
 
   removePassenger(id: number) {
-    this.passengers = this.passengers.filter(
-      (passenger) => passenger.id !== id
-    );
+    this.passengerObservable = this.passengerService
+      .removePassenger(id)
+      .subscribe(() => {
+        this.passengers = this.passengers.filter(
+          (passenger) => passenger.id !== id
+        );
+      }, this.logError);
   }
+  logError = (error: HttpErrorResponse) => console.error(error);
 }

@@ -3,17 +3,14 @@ import { Passenger, passengers } from "src/assets/passengers";
 @Component({
   selector: "passenger-count",
   template: `<div>
-    Checked In passenger:{{ countPassenger() }}/{{ items.length }}
+    Checked In passenger:{{ countPassenger() }}/{{ items ?.length }}
   </div>`,
 })
 export class PassengerCountComponent {
   @Input() items: Passenger[];
 
-  constructor() {
-      console.log(this.items)
-  }
 
   countPassenger(): number {
-    return this.items.filter((passenger) => passenger.checkedIn).length;
+    return this.items?.filter((passenger) => passenger.checkedIn)?.length;
   }
 }

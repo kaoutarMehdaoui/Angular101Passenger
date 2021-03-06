@@ -14,7 +14,7 @@ import { PassengerService } from "./containers/passenger.service";
     PassengerListComponent,
   ],
   imports: [CommonModule, HttpClientModule],
-  providers: [],
+  providers: [PassengerService],
   exports: [PassengerDashbordComponent],
 })
 export class PassengersModule {}

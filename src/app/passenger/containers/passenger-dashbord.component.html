@@ -1,9 +1,8 @@
 <h3>AirLine passengers</h3>
-
 <passenger-count [items]="passengers"></passenger-count>
-<passenger-list
-  [passengers]="passengers"
-  (edit)="editPassenger($event)"
-  (remove)="removePassenger($event)"
->
-</passenger-list>
+    <passenger-list
+      *ngFor="let passenger of passengers"
+      [passenger]="passenger"
+      (edit)="editPassenger($event)"
+      (remove)="removePassenger($event)"
+    ></passenger-list>
