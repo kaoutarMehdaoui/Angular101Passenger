@@ -46,5 +46,9 @@ export class PassengerDashbordComponent implements OnInit, OnDestroy {
         );
       }, this.logError);
   }
+  addNewPassenger(passenger:Passenger){
+    this.passengers=this.passengers.concat([passenger]);
+  }
+
   logError = (error: HttpErrorResponse) => console.error(error);
 }

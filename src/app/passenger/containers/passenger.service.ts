@@ -30,4 +30,10 @@ export class PassengerService {
     };
     return options;
   }
+  public addPassenger(passenger:Passenger): Observable<Passenger>
+  {
+    passenger={...passenger,checkedIn:!!(Math.floor(Math.random()*2))}
+    return this.http.post<Passenger>(url,passenger);
+  }
+
 }

@@ -1,0 +1,21 @@
+.form{
+    padding:10px 10px 10px 10px;
+    display: flex;
+    justify-content: center;
+    width:500px;
+    border:1px solid rgb(130,130,130);
+    margin:auto;
+    margin-bottom: 50px;
+    flex-direction: column;
+    background-color: rgba(240,240,240,0.8);
+}
+.form input{
+    width:400px;
+}
+.row{display: flex;flex-direction: column;}
+.row input{width:450px;margin-bottom: 8px;}
+.row div:nth-child(2){color:red;margin-left: 50px;font-size: small;}
+.form .btn{
+    margin:auto;
+    width:200px;
+}

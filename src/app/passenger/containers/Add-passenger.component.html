@@ -1,0 +1,10 @@
+<form #addPassengerForm="ngForm" class="form" novalidate (ngSubmit)="addPassenger(addPassengerForm.value);clear(addPassengerForm,fullName,date)">
+    <div class="row">
+        <input name="fullName" ngModel type="text" #fullName placeholder="Fullname"/>
+        <div *ngIf="error">* this field is required</div>
+        <input type="date" name="date" #date ngModel>
+
+    </div>
+    <input type="submit" value="Add passenger" class="btn"/>
+
+</form>
