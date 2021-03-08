@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 
-import { Passenger, passengers } from "src/assets/passengers";
+import { Passenger} from "src/assets/passengers";
 const url='http://localhost:3000/passengers';
 @Injectable({ providedIn: "root" })
 export class PassengerService {
@@ -30,10 +30,11 @@ export class PassengerService {
     };
     return options;
   }
-  public addPassenger(passenger:Passenger): Observable<Passenger>
-  {
-    passenger={...passenger,checkedIn:!!(Math.floor(Math.random()*2))}
-    return this.http.post<Passenger>(url,passenger);
+  public addPassenger(passenger:Passenger):Observable<Passenger>{
+    passenger={...passenger,checkedIn:!!(Math.floor(Math.random()*2))} // random checkin status
+  
+    return this.http.post<Passenger>(url,passenger)
   }
+
 
 }
