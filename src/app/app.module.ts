@@ -5,10 +5,12 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 import { AppComponent } from './app.component';
 
 import { PassengersModule } from './passenger/passenger.module';
+import { PassengerFormComponent } from './passenger-form/passenger-form.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PassengerFormComponent
   ],
   imports: [
     BrowserModule,

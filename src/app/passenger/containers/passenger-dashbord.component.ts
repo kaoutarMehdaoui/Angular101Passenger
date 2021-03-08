@@ -25,15 +25,12 @@ export class PassengerDashbordComponent implements OnInit, OnDestroy {
     .catch(this.logError);
   }
   editPassenger(passenger: Passenger) {
-    this.passengerService
-      .editPassenger(passenger.id, passenger)
+    this.passengerObservable = this.passengerService
+      .editPassenger(passenger)
       .subscribe((passenger) => {
-        this.passengers = this.passengers.map((p) => {
-          if (p.id === passenger.id) {
-            return Object.assign({}, p, passenger);
-          }
-          return p;
-        });
+        this.passengers = this.passengers.map((p) =>
+          passenger.id === p.id ? { ...passenger } : p
+        );
       }, this.logError);
   }
 
